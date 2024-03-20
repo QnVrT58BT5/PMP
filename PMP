@@ -1,0 +1,17 @@
+
+<?php
+/**
+ * Redirect logged-in users away from the pmpro login page.
+ * Please customize this gist to your liking and redirect to a URL that isn't the login page otherwise you may get caught in a loop.
+ * 
+ * Add this code to your site by following this guide - https://www.paidmembershipspro.com/create-a-plugin-for-pmpro-customizations/
+ */
+function my_pmpro_redirect_away_login_page() {
+	global $pmpro_pages;
+
+	if ( is_page( $pmpro_pages['login'] ) && is_user_logged_in() ) {
+		wp_redirect( home_url( '/medlemssidan' );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'my_pmpro_redirect_away_login_page' );
