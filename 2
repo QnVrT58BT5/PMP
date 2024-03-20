@@ -1,0 +1,25 @@
+function replace_header_icon_based_on_cart_with_jquery() {
+    // Check if WooCommerce is active
+    if ( class_exists( 'WooCommerce' ) ) {
+        // Get the cart total
+        $cart_total = WC()->cart->get_cart_contents_count();
+        // Remove currency symbols and commas
+       
+
+        ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                // Get the cart total from PHP
+                var cartTotal = <?php echo $cart_total; ?>;
+               
+                // Check if the cart total is 0 or empty
+                if (cartTotal === 0 ) {
+                    // Cart is empty or total is not a number, replace HTML with user icon
+                    $('.elementor-icon-wrapper:first').html('<a class="elementor-icon" href="https://staging21.meditationistockholm.se/login/"><i class="fas fa-user-lock" aria-hidden="true"></i></a>');
+                }
+            });
+        </script>
+        <?php
+    }
+}
+add_action('wp_footer', 'replace_header_icon_based_on_cart_with_jquery');
